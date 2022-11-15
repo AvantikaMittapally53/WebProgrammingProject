@@ -67,7 +67,8 @@
         .bg-gray-100 {
             --bg-opacity: 1;
             background-color: #f7fafc;
-            background-color: rgba(247, 250, 252, var(--bg-opacity))
+            background-color: rgba(247, 250, 252, var(--bg-opacity));
+            background-image: url("https://www.hhpl.on.ca/en/resourcesGeneral/events_bg.jpg");
         }
 
         .border-gray-200 {
@@ -191,7 +192,7 @@
         }
 
         .px-6 {
-            padding-left: 1.5rem;
+            padding-left: 70rem;
             padding-right: 1.5rem
         }
 
@@ -401,22 +402,145 @@
         body {
             font-family: 'Nunito', sans-serif;
         }
+        form.card.card-sm .card-body {padding: 0 0 0 10px;box-shadow: none;border: none;}
+form.card.card-sm .card-body input{
+    border: none;
+    padding: 6px 10px;
+    font-size: 16px;
+}
+form.card.card-sm .card-body i.fas {
+    margin-bottom: 0;
+    font-size: 16px;
+}
+
+button.btn.btn-lg.btn-success {
+    border-radius: 30px;
+    line-height: normal;
+    text-transform: uppercase;
+    font-size: 16px;
+}
+
+form.card.card-sm {
+    border: 1px solid #ddd;
+    border-radius: 30px;
+    align-items: center;
+    height: 40px;
+}
+
+.card-header h1 {
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 00;
+}
+
+.card-header {
+    border-bottom: none;
+    padding: 50px 0 0;
+}
+
+.col-md-8>.card {border: none;max-width: 490px;margin: 0 auto;min-height: 200px;border-radius: 20px;box-shadow: 0 0 20px 3px rgb(0 0 0 / 10%);}
+
+
+.card-body {
+    display: flex;
+    padding-top: 30px;
+}
+
+.row.justify-content-center {
+    align-items: c;
+}
+
+.col-12.col-md-10.col-lg-8 {
+    width: 100%;
+    max-width: max-content;
+    flex: 100%;
+}
+
+body.antialiased {
+    background: #f9f9f9;
+}
+
+.hidden.fixed.top-0.right-20.px-6.py-4.sm\:block a.text-sm {
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 500;
+}
+.hidden.fixed.top-0.right-0.px-6.py-4.sm\:block a.text-sm {
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #000;
+    font-size: 18px;
+    font-weight: 500;
+}
+.title-word {
+  animation: color-animation 4s linear infinite;
+}
+
+.title-word-1 {
+  --color-1: #DF8453;
+  --color-2: #3D8DAE;
+  --color-3: #E4A9A8;
+}
+@keyframes color-animation {
+  0%    {color: var(--color-1)}
+  32%   {color: var(--color-1)}
+  33%   {color: var(--color-2)}
+  65%   {color: var(--color-2)}
+  66%   {color: var(--color-3)}
+  99%   {color: var(--color-3)}
+  100%  {color: var(--color-1)}
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a {
+  background:
+    linear-gradient(
+      to right,
+      rgba(100, 200, 200, 1),
+      rgba(100, 200, 200, 1)
+    ),
+    linear-gradient(
+      to right,
+      rgba(255, 0, 0, 1),
+      rgba(255, 0, 180, 1),
+      rgba(0, 100, 200, 1)
+  );
+  background-size: 100% 3px, 0 3px;
+  background-position: 100% 100%, 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 400ms;
+}
+
+a:hover {
+  background-size: 0 3px, 100% 3px;
+}
     </style>
-  
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<!-- bablu2612 -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+
 </head>
 
 <body class="antialiased">
-    
+
 
 
     <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
- 
+
         @if (Route::has('login'))
         <div class="hidden fixed top-0 right-20 px-6 py-4 sm:block">
             @auth
             <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a>
             @else
-            <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
+            <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline ">Log in</a>
 
             @if (Route::has('register'))
             <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
@@ -428,7 +552,9 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header"><h1>Welcome to the portal</h1></div>
+                <div class="card-header"><h1>
+                <span class="title-word title-word-1">Digital Library Search Engine</span>
+                </h1></div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -436,15 +562,53 @@
                         {{ session('status') }}
                     </div>
                     @endif
+
+
+
+
+
+
+                    <div class="container">
+    <br/>
+	<div class="row justify-content-center">
+                        <div class="col-12 col-md-10 col-lg-8">
+                        <form class="card card-sm" method="GET" action="/search">
+                            @csrf
+                                <div class="card-body row no-gutters align-items-center">
+                                    <div class="col-auto">
+                                        <i class="fas fa-search h4 text-body"></i>
+                                    </div>
+                                    <!--end of col-->
+                                    <div class="col">
+                                    <input  class="form-control form-control-lg form-control-borderless" type="search" placeholder="Search topics or keywords" id="q" name="q" value={{ request()->get('q', '') }} >
+                                    </div>
+                                    <!--end of col-->
+                                    <div class="col-auto">
+                                        <button class="btn btn-lg btn-success" type="submit">Search</button>
+                                    </div>
+                                    <!--end of col-->
+                                </div>
+                            </form>
+                        </div>
+                        <!--end of col-->
+                    </div>
+</div>
+
+
+
+
+
+
+
                 </div>
             </div>
         </div>
     </div>
 </div>
-       
+
     </div>
-  
-   
+
+
 </body>
 
 </html>

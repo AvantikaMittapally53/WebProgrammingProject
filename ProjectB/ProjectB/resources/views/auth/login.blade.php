@@ -1,13 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div
-  class="bg-image"
-  style="
-    background-image: url('https://www.loginradius.com/blog/static/3b4c33cef1861297f7da778dff9074a7/a3513/login-security.png');
-    height: 800px;
-  "
->
+
 <div class="container">
 
 @if ($message = Session::get('success'))
@@ -33,14 +27,15 @@
                         @endif
                         
     <div class="row justify-content-center">
-        <div class="col-md-8  ">
-            <div class="card top-50">
-                <div class="card-header">{{ __('Login') }}</div>
+        <div class="col-md-12  ">
+            <div class="card top-20">
+                <div class="card-header"><h3><b>{{ __('Login') }}</b></h3></div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
-
+<br>
+<br>
                         <div class="row mb-3">
                             <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
 
@@ -54,6 +49,8 @@
                                 @enderror
                             </div>
                         </div>
+                        <br>
+                        <br>
 
                         <div class="row mb-3">
                             <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
@@ -68,7 +65,8 @@
                                 @enderror
                             </div>
                         </div>
-
+<br>
+<br>
                         <div class="row mb-3">
                             <div class="col-md-6 offset-md-4">
                                 <div class="form-check">
@@ -94,11 +92,12 @@
                                 @endif
                             </div>
                         </div>
+                        <br>
+                        <br>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-</div>
 </div>
 @endsection

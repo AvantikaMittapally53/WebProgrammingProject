@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+                <div class="card-header">{{ __('ETD Search Engine') }}</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -15,9 +15,16 @@
                     @endif
 
                     <nav class="navbar navbar-light bg-light form-inline">
-                        <form class="form-inline">
-                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                        <form class="form-inline" method="GET" action="/search">
+                            @csrf
+                            <div class="d-flex align-items-center"> 
+                            <div class="p-2">
+                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="q">
+</div>
+<div class="p-2  flex-grow-1">
+
                             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+</div>
                         </form>
                     </nav>
                 </div>

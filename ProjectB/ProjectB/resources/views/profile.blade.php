@@ -28,7 +28,7 @@
                        </div><br />
                         <div class="form-group">
                            <label for="email"><strong>Email:</strong></label>
-                           <input type="text" class="form-control" id ="email" value="{{Auth::user()->email}}" name="email">
+                           <input type="text" class="form-control" id ="email" value="{{Auth::user()->email}}" name="email" readonly>
                        </div><br />
                        <div class="form-group">
                            <label for="phone"><strong>Phone:</strong></label>

@@ -2,23 +2,18 @@
   
 @section('content')
 
-<div
-  class="bg-image"
-  style="
-    background-image: url('https://www.athletadesk.com/wp-content/uploads/2016/08/join-background.jpg');
-    height: 800px;
-  "
->
+
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card top-50">
-                <div class="card-header">{{ __('Register') }}</div>
+        <div class="col-md-12">
+            <div class="card top-10">
+                <div class="card-header"><h3><b>{{ __('Register') }}</b></h3></div>
   
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
-  
+  <br>
+  <br>
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
   
@@ -32,6 +27,8 @@
                                 @enderror
                             </div>
                         </div>
+                        <br>
+  <br>
   
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">Phone</label>
@@ -46,6 +43,8 @@
                                 @enderror
                             </div>
                         </div>
+                        <br>
+  <br>
   
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
@@ -60,6 +59,8 @@
                                 @enderror
                             </div>
                         </div>
+                        <br>
+  <br>
   
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
@@ -74,7 +75,8 @@
                                 @enderror
                             </div>
                         </div>
-  
+                        <br>
+  <br>
                         <div class="form-group row">
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
   
@@ -82,7 +84,8 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
                         </div>
-  
+                        <br>
+  <br>
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
@@ -95,6 +98,5 @@
             </div>
         </div>
     </div>
-</div>
 </div>
 @endsection

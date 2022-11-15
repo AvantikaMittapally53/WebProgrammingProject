@@ -12,29 +12,60 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-  
 Route::get('/', function () {
     try{
         if(auth()->user()->role == 'user'){
             return view('dashboard');
-    
+
         }else if(auth()->user()->role == 'admin'){
             return redirect('admin');
-    
-    
+
+
         }else{
             return view('welcome');
-    
+
         }
     }catch(\Exception $e){
         return view('welcome');
 
     }
-   
+
 });
-  
+
+
+
+Route::get('/', function () {
+    try{
+        if(auth()->user()->role == 'user'){
+            return view('dashboard');
+
+        }else if(auth()->user()->role == 'admin'){
+            return redirect('admin');
+
+
+        }else{
+            return view('welcome');
+
+        }
+    }catch(\Exception $e){
+        return view('welcome');
+
+    }
+
+});
+
+Route::get('/search', [App\Http\Controllers\SearchController::class, 'index'])->name('search');
+Route::get('/search/{id}', [App\Http\Controllers\SearchController::class, 'show'])->name('show');
+Route::get('/get_data', [App\Http\Controllers\SearchController::class, 'get_data'])->name('get_data');
+
+
+Route::get('/document', [App\Http\Controllers\DocumentController::class, 'show'])->name('show');
+Route::post('/document/save', [App\Http\Controllers\DocumentController::class, 'save'])->name('save');
+
+
+
 Auth::routes();
-  
+
 Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard')->middleware('2fa');
 Route::get('/user/profile', [App\Http\Controllers\DashboardController::class, 'profile'])->name('profile')->middleware('2fa');
 Route::get('/user/show_reset', [App\Http\Controllers\DashboardController::class, 'show_reset'])->name('show_reset')->middleware('2fa');
