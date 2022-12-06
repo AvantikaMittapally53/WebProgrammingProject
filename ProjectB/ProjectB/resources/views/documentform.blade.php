@@ -23,7 +23,7 @@
                         <p>{{$message}}</p>
                     </div>
                     @endif
-                    <form action="/document/save" method="POST">
+                    <form action="/document/save" method="POST"  enctype="multipart/form-data">
                         @csrf
                         <div class="form-group row">
                             <label for="advisor" class="col-md-4 col-form-label text-md-right">{{ __('Advisor') }}</label>
@@ -135,7 +135,7 @@
                             <label for="text_data" class="col-md-4 col-form-label text-md-right">{{ __('Document') }}</label>
 
                             <div class="col-md-6">
-                                <input type="file" name="document" class="form-control @error('text_data') is-invalid @enderror" />
+                            <input type="file" name="image" class="form-control @error('text_data') is-invalid @enderror" />
 
                             </div>
                         </div>

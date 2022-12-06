@@ -1,40 +1,38 @@
 @extends('layouts.app')
 
 @section('content')
-
 <div class="container">
-
 @if ($message = Session::get('success'))
                             <div class="row">
                               <div class="col-md-12">
                                   <div class="alert alert-success alert-block">
-                                    <button type="button" class="close" data-dismiss="alert">×</button> 
+                                    <button type="button" class="close" data-dismiss="alert">×</button>
                                       <strong>{{ $message }}</strong>
                                   </div>
                               </div>
                             </div>
                         @endif
-  
+
                         @if ($message = Session::get('error'))
                             <div class="row">
                               <div class="col-md-12">
                                   <div class="alert alert-danger alert-block">
-                                    <button type="button" class="close" data-dismiss="alert">×</button> 
+                                    <button type="button" class="close" data-dismiss="alert">×</button>
                                       <strong>{{ $message }}</strong>
                                   </div>
                               </div>
                             </div>
                         @endif
-                        
+
     <div class="row justify-content-center">
-        <div class="col-md-12  ">
-            <div class="card top-20">
+    <div class="col-md-12  ">	
+            <div class="card top-20">	
                 <div class="card-header"><h3><b>{{ __('Login') }}</b></h3></div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
-<br>
+                        <br>	
 <br>
                         <div class="row mb-3">
                             <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
@@ -49,7 +47,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <br>
+                        <br>	
                         <br>
 
                         <div class="row mb-3">
@@ -65,8 +63,8 @@
                                 @enderror
                             </div>
                         </div>
-<br>
-<br>
+                        <br>	
+                        <br>
                         <div class="row mb-3">
                             <div class="col-md-6 offset-md-4">
                                 <div class="form-check">
@@ -79,10 +77,18 @@
                             </div>
                         </div>
 
+                        <script src="https://www.google.com/recaptcha/api.js"
+                            async defer></script>
+                            <div class="row mb-3">
+                            <div class="col-md-6 offset-md-4">
+                    <div class="g-recaptcha" id="feedback-recaptcha"
+                         data-sitekey="6LcSPz4jAAAAAHwG-jJNhmduicgZbsyJ8pjTZpuD">
+                    </div>
+                    </div> </div>
+
                         <div class="row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary background-color: #1c3474">
-                                    {{ __('Login') }}
+                            <button type="submit" class="btn btn-primary background-color: #1c3474">                                    {{ __('Login') }}
                                 </button>
 
                                 @if (Route::has('password.request'))
@@ -92,8 +98,8 @@
                                 @endif
                             </div>
                         </div>
-                        <br>
-                        <br>
+                       <br>
+                       <br> 
                     </form>
                 </div>
             </div>

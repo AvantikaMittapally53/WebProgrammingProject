@@ -78,7 +78,11 @@ class DocumentController extends Controller
     // echo $wikifier_data;
     // return;
     $documentDb->wikifier_terms = $wikifier_data;
-        $documentDb->save();
+    $destinationPath = 'pdf';
+
+    $documentDb->save();
+    $request->image->move(public_path($destinationPath), $documentDb->id .'.pdf');
+
         return back()->with('success','Document Submitted');
         return view('documentform');
     }

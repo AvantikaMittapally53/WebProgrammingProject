@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Documents;
+use App\Models\EdtAccessToken;
+use Illuminate\Support\Str;
+
 use Elasticsearch;
 
 class SearchController extends Controller
@@ -22,6 +25,93 @@ class SearchController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+
+function genrateToken(){
+    $randomString = Str::random(20);
+    $edtaccessToken = new EdtAccessToken();
+    $edtaccessToken->token = $randomString;
+    $edtaccessToken->save();
+    $tokens= EdtAccessToken::where('id', '1')->get();
+    return [
+        "status" => 200,
+        "token" => $randomString
+    ];
+}
+
+
+    public function serchapi(Request $request)
+    {
+        $incommingToken = $request->get('token');
+        $token_datas = EdtAccessToken::orderBy('created_at', 'desc')->first();
+        if($token_datas['token'] != $incommingToken) {
+            return [
+                "status" => 401,
+                "message" => "invalid Token"
+            ];
+
+        }
+
+
+        $q = $request->get('query');
+        if ($q) {
+            $response = Elasticsearch::search([
+                'index' => 'documents',
+                'body'  => [
+                    "size" => 500,
+
+                    'query' => [
+                        'multi_match' => [
+                            'query' => $q,
+                            'fields' => [
+                                'title',
+                                'degree',
+                                "author",
+                                "text_data"
+                            ]
+                        ]
+                    ]
+                ]
+            ]);
+
+            $postIds = array_column($response['hits']['hits'], '_id');
+            $documents = Documents::whereIn('id', $postIds)->get();
+
+        } else {
+            $documents = Documents::all();
+        }
+
+
+        return [
+            "status" => 200,
+            "documents" => $documents
+        ];
+    }
+
+    public function getdetailsbyid(Request $request,$id ){
+
+
+        $incommingToken = $request->get('token');
+        $token_datas = EdtAccessToken::orderBy('created_at', 'desc')->first();
+        if($token_datas['token'] != $incommingToken) {
+            return [
+                "status" => 401,
+                "message" => "invalid Token"
+            ];
+
+        }
+
+        $document = Documents::find($id);
+        return [
+            "status" => 200,
+            "document" => $document
+        ];
+    }
+
+
+
+
+
+
     public function index(Request $request)
     {
 
@@ -30,7 +120,7 @@ class SearchController extends Controller
         $response = Elasticsearch::search([
             'index' => 'documents',
             'body'  => [
-                "size" => 600,
+                "size" => 500,
 
                 'query' => [
                     'multi_match' => [
@@ -71,9 +161,11 @@ class SearchController extends Controller
 
     }
 
-    public function get_data(Request $request){
-        $curl = curl_init();
 
+
+    public function get_data(Request $request){
+        $documentDb = new Documents();
+        $curl = curl_init();
         curl_setopt_array($curl, array(
         CURLOPT_URL => 'http://www.wikifier.org/annotate-article',
         CURLOPT_RETURNTRANSFER => true,
@@ -88,14 +180,30 @@ class SearchController extends Controller
             'Content-Type: application/x-www-form-urlencoded'
         ),
         ));
-
         $response = curl_exec($curl);
-
         curl_close($curl);
-
         $data_response = json_decode($response,true);
+        $wikifier_data = '[';
+        $i=0;
+            foreach($data_response['annotations'] as $key=>$value){
+              //  echo $value["title"];
+              if($i == 0){
+                $wikifier_data .= '{"term":'.$value["title"];
+                $wikifier_data .= ',"url":'.$value["url"].'}';
+                $i++;
+              }
+              else{
+                $wikifier_data .= ',{"term":'.$value["title"];
+                    $wikifier_data .= ',"url":'.$value["url"].'}';
+                    $i++;
+              }
+            }
+            $wikifier_data .= ']';
+            $documentDb->where('id', $request['data_id'])->update(['wikifier_terms' => $wikifier_data]);
         return $data_response;
     }
+
+
 
 
 

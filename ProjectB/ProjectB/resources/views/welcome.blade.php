@@ -9,6 +9,7 @@
 
     <!-- Fonts -->
     <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="{{ url('favicon.svg') }}">
 
     <!-- Styles -->
     <style>
@@ -69,6 +70,7 @@
             background-color: #f7fafc;
             background-color: rgba(247, 250, 252, var(--bg-opacity));
             background-image: url("https://www.hhpl.on.ca/en/resourcesGeneral/events_bg.jpg");
+
         }
 
         .border-gray-200 {
@@ -396,6 +398,16 @@
                 color: rgba(107, 114, 128, var(--tw-text-opacity))
             }
         }
+        @media (max-width:360px) {
+        .hidden.fixed.top-0.right-20.px-6.py-4.sm\:block {
+          display: block;
+        }
+
+        .relative.flex.items-top.justify-center .container {
+         display: flex;
+         align-items: center;
+}
+        }
     </style>
 
     <style>
@@ -496,7 +508,6 @@ a {
   color: inherit;
   text-decoration: none;
 }
-
 a {
   background:
     linear-gradient(
@@ -540,7 +551,7 @@ a:hover {
             @auth
             <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a>
             @else
-            <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline ">Log in</a>
+            <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
 
             @if (Route::has('register'))
             <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>

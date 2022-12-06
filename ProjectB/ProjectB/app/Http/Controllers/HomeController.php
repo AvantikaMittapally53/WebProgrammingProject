@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use Illuminate\Support\Facades\Hash;
-//use App\Models\Documents;
 
 class HomeController extends Controller
 {
@@ -69,17 +68,6 @@ class HomeController extends Controller
         return back()->with('success','Password sucessfully  Updated');
         return view('profile');
     }
-
-    public function search()
-    {
-        dd('here');
-        die();
-//         $documents = Documents::find($request->id)->with('district')->get();
-// // dd($documents);
-
-//         return view('welcome', compact('documents'));
-    }
-    
     
 
     

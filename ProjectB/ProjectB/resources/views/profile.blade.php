@@ -6,7 +6,7 @@
 
         <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
+            <div class="card" style="height:25rem;">
                 <div class="card-header">Profile</div>
                 
                 <div class="card-body">
@@ -28,8 +28,7 @@
                        </div><br />
                         <div class="form-group">
                            <label for="email"><strong>Email:</strong></label>
-                           <input type="text" class="form-control" id ="email" value="{{Auth::user()->email}}" name="email" readonly>
-                       </div><br />
+                           <input type="text" class="form-control" id ="email" value="{{Auth::user()->email}}" name="email" readonly>                       </div><br />
                        <div class="form-group">
                            <label for="phone"><strong>Phone:</strong></label>
                            <input type="text" class="form-control" id ="phone" value="{{Auth::user()->phone}}" name="phone">
